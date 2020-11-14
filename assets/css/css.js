@@ -10,6 +10,13 @@ const css = StyleSheet.create({
     textPage:{
         backgroundColor:'blue',
         padding: 20
+    },
+    area__tab:{
+        backgroundColor: '#fff',
+        fontSize: 20,
+        fontWeight: 'bold',
+        color:'#333'
     }
+
   });
   export {css};

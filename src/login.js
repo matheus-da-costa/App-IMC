@@ -8,12 +8,12 @@ import { View,
         StyleSheet 
     } from 'react-native';
 
-export default function Login({ navigation }) {
+export default function Login(props) {
     return (
         <KeyboardAvoidingView style={styles.background}>
             <View style={styles.containerLogo}>
                 <Image
-                source={require('../assets/img/icon.png')}
+                source={require('../assets/img/logo.png')}
                 />
             </View>
 
@@ -34,7 +34,7 @@ export default function Login({ navigation }) {
 
                 <TouchableOpacity 
                     style={styles.btnSubmit}
-                    onPress={() => navigation.navigate('Imc')}>
+                    onPress={() => props.navigation.navigate("App")}>
                     <Text style={styles.submitText}>Entrar</Text>
                 </TouchableOpacity>
 
