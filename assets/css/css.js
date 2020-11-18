@@ -16,7 +16,56 @@ const css = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color:'#333'
-    }
+    },
+    tela_login:{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#F5FCFF'
+    },
+    containerLogo: {
+      flex: 1,
+      justifyContent: 'center',
+      marginBottom: 10,
+    },
+    msg_login:(text='none')=>({
+      fontWeight:"bold",
+      fontSize: 15,
+      color:"red",
+      marginTop: 5,
+      marginBottom: 15,
+      display: text
+  }),
+    form_login: {
+      flex:1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '90%',
+      paddingBottom: 50
+    },
+    input_login: {
+      backgroundColor: '#FFF',
+      width: '90%',
+      marginBottom: 15,
+      color: '#222',
+      fontSize: 17,
+      borderRadius: 7,
+      padding: 10,
+    },
+    btnSubmit_login: {
+      backgroundColor: '#87cefa',
+      width: '90%',
+      height: 45,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 7
+    }, 
+    submitText_login:{
+      fontSize: 18
+    },
+    btnRegister_login: {
+      marginTop: 10,  
+    },
 
   });
   export {css};

@@ -1,44 +1,55 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
+
 import { View,
         KeyboardAvoidingView, 
         Image, 
         TextInput, 
         TouchableOpacity, 
-        Text,
-        StyleSheet 
+        Text
     } from 'react-native';
 
+import {css} from '../assets/css/css';
+
 export default function Login(props) {
+
+    const [display, setDisplay]=useState('none');
+
     return (
-        <KeyboardAvoidingView style={styles.background}>
-            <View style={styles.containerLogo}>
+        <KeyboardAvoidingView style={css.tela_login}>
+            <View style={css.containerLogo}>
                 <Image
                 source={require('../assets/img/logo.png')}
                 />
             </View>
 
-            <View style={styles.container}>
+            <View>
+                <Text style={css.msg_login(display)}>Usuário ou senha inválidos!</Text>
+            </View>
+
+            <View style={css.form_login}>
                 <TextInput 
-                style={styles.input}
+                style={css.input_login}
                 placeholder="Username"
                 autoCorrect={false}
                 onChangeText={()=> {}}
                 />
 
                 <TextInput
-                style={styles.input}
+                style={css.input_login}
                 placeholder="Senha"
+                secureTextEntry={true}
                 autoCorrect={false}
                 onChangeText={()=> {}}
                 />
 
                 <TouchableOpacity 
-                    style={styles.btnSubmit}
+                    style={css.btnSubmit_login}
                     onPress={() => props.navigation.navigate("App")}>
-                    <Text style={styles.submitText}>Entrar</Text>
+                    //onPress={()=>setDisplay('flex')}
+                    <Text style={css.submitText_login}>Entrar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.btnRegister}>
+                <TouchableOpacity style={css.btnRegister_login}>
                     <Text>Criar conta gratuita</Text>
                 </TouchableOpacity>
             </View>
@@ -46,45 +57,3 @@ export default function Login(props) {
     );
 }
 
-const styles = StyleSheet.create({
-    background:{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#F5FCFF'
-    },
-    containerLogo: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    container: {
-        flex:1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '90%',
-        paddingBottom: 50
-    },
-    input: {
-        backgroundColor: '#FFF',
-        width: '90%',
-        marginBottom: 15,
-        color: '#222',
-        fontSize: 17,
-        borderRadius: 7,
-        padding: 10,
-    },
-    btnSubmit: {
-        backgroundColor: '#87cefa',
-        width: '90%',
-        height: 45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 7
-    }, 
-    submitText:{
-        fontSize: 18
-    },
-    btnRegister: {
-      marginTop: 10,  
-    },
-});
