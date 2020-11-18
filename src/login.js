@@ -45,7 +45,6 @@ export default function Login(props) {
                 <TouchableOpacity 
                     style={css.btnSubmit_login}
                     onPress={() => props.navigation.navigate("App")}>
-                    //onPress={()=>setDisplay('flex')}
                     <Text style={css.submitText_login}>Entrar</Text>
                 </TouchableOpacity>
 
