@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2020 at 09:31 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.28
+-- Tempo de geração: 20-Nov-2020 às 13:52
+-- Versão do servidor: 10.4.14-MariaDB
+-- versão do PHP: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,67 +18,122 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bdimc`
+-- Banco de dados: `bdimc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historico`
+-- Estrutura da tabela `historicos`
 --
 
-CREATE TABLE `historico` (
+CREATE TABLE `historicos` (
   `id` int(11) NOT NULL,
-  `altura` double NOT NULL,
-  `massa` double NOT NULL,
-  `idade` int(11) NOT NULL,
-  `imc` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `altura` double DEFAULT NULL,
+  `massa` double DEFAULT NULL,
+  `idade` int(11) DEFAULT NULL,
+  `imc` double DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `historicos`
+--
+
+INSERT INTO `historicos` (`id`, `altura`, `massa`, `idade`, `imc`, `userId`, `createdAt`, `updatedAt`) VALUES
+(1, 1.7, 70, 19, 24.22, 1, '2020-11-17 23:18:20', '2020-11-17 23:18:20');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura da tabela `sequelizemeta`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `sequelizemeta` (
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `sequelizemeta`
+--
+
+INSERT INTO `sequelizemeta` (`name`) VALUES
+('20201118012640-create-user.js'),
+('20201118014250-create-historico.js');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `users`
+--
+
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `login` varchar(255) NOT NULL,
-  `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `password`, `createdAt`, `updatedAt`) VALUES
+(1, 'admin', '123', '2020-11-17 23:16:01', '2020-11-17 23:16:01'),
+(3, 'Thiago', 'abc123', '2020-11-19 17:57:40', '2020-11-19 18:17:46');
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `historico`
+-- Índices para tabela `historicos`
 --
-ALTER TABLE `historico`
+ALTER TABLE `historicos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`);
+
+--
+-- Índices para tabela `sequelizemeta`
+--
+ALTER TABLE `sequelizemeta`
+  ADD PRIMARY KEY (`name`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Índices para tabela `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `historico`
+-- AUTO_INCREMENT de tabela `historicos`
 --
-ALTER TABLE `historico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `historicos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de tabela `users`
 --
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `historicos`
+--
+ALTER TABLE `historicos`
+  ADD CONSTRAINT `historicos_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
