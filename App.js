@@ -60,8 +60,8 @@ function Tabs() {
 const App = () => (
     <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen name="Login" component={Login}  options={{headerShown: false}}/>
-            <Stack.Screen name="App" component={Tabs} options={{headerTitleStyle:{alignSelf:'center'}}}/>
+            <Stack.Screen name="Login" component={Login} options={{headerTitleStyle:{alignSelf:'center'}}} />
+            <Stack.Screen name="App" component={Tabs} />
         </Stack.Navigator>
 
     </NavigationContainer>
