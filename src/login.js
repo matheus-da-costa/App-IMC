@@ -1,90 +1,132 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+
 import { View,
-        KeyboardAvoidingView, 
-        Image, 
-        TextInput, 
-        TouchableOpacity, 
-        Text,
-        StyleSheet 
-    } from 'react-native';
+    KeyboardAvoidingView, 
+    Image, 
+    TextInput, 
+    TouchableOpacity, 
+    Text,
+    Animated,
+    Keyboard
+  } from 'react-native';
 
-export default function Login(props) {
+import firebase from '../firebaseConfig'; 
+
+import {css} from '../assets/css/css';
+
+export default function Login({navigation}) {
+
+    // Autenticação de Login
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [display, setDisplay]=useState('none');
+
+    function logar() {
+        firebase.auth().signInWithEmailAndPassword(email, senha).then(()=>{
+            navigation.navigate('App');
+        }).catch((error)=> {
+
+            setDisplay('flex');
+            setTimeout(() => {
+                setDisplay('none');
+            },5000);
+        });
+    }
+
+    //Efeito animado do Login
+    const [offset] = useState(new Animated.ValueXY({x: 0, y: 95}));
+    const [opacity] = useState(new Animated.Value(0));
+    const [logo] = useState(new Animated.ValueXY({x: 200, y:200}));
+
+    useEffect(()=> {
+        KeyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+        KeyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
+        Animated.parallel([
+            Animated.spring(offset.y, {
+                toValue: 0,
+                speed: 4,
+                bounciness: 20    
+            }),
+            Animated.timing(opacity, {
+                toValue: 1,
+                duration: 200,
+            })
+        ]).start();
+
+        function keyboardDidShow(){
+            Animated.parallel([
+                Animated.timing(logo.x, {
+                    toValue: 55,
+                    duration: 500,
+                }),
+                Animated.timing(logo.y, {
+                    toValue: 65,
+                    duration: 500,
+                }),
+            ]).start();
+        }
+
+        function keyboardDidHide() {
+            Animated.parallel([
+                Animated.timing(logo.x, {
+                    toValue: 200,
+                    duration: 500,
+                }),
+                Animated.timing(logo.y, {
+                    toValue: 200,
+                    duration: 500,
+                }),
+            ]).start();
+        }
+    }, []);    
+
     return (
-        <KeyboardAvoidingView style={styles.background}>
-            <View style={styles.containerLogo}>
-                <Image
-                source={require('../assets/img/logo.png')}
-                />
+        <KeyboardAvoidingView style={css.tela_login}>
+            <View style={css.containerLogo}>
+                <Animated.Image 
+                    style={{
+                    width: logo.x,
+                    height: logo.y, 
+                    }}
+                    source={require('../assets/img/logo.png')}/>
             </View>
-
-            <View style={styles.container}>
+    
+            <Animated.View style={[
+                css.form_login,
+                {
+                    opacity: opacity,
+                    transform: [
+                        { translateY: offset.y}
+                    ]
+                }
+            ]}>
+    
+                <Text style={css.msg_login(display)}>Usuário ou senha inválidos!</Text>
+    
                 <TextInput 
-                style={styles.input}
-                placeholder="Username"
+                style={css.input_login}
+                placeholder="Email"
+                onChangeText={email => setEmail(email)}
+                value={email}
                 autoCorrect={false}
-                onChangeText={()=> {}}
                 />
-
+    
                 <TextInput
-                style={styles.input}
+                style={css.input_login}
                 placeholder="Senha"
+                secureTextEntry={true}
+                onChangeText={senha => setSenha(senha)}
+                value={senha}
                 autoCorrect={false}
-                onChangeText={()=> {}}
                 />
-
+    
                 <TouchableOpacity 
-                    style={styles.btnSubmit}
-                    onPress={() => props.navigation.navigate("App")}>
-                    <Text style={styles.submitText}>Entrar</Text>
+                    style={css.btnSubmit_login}
+                    onPress={() => logar()}>
+                        <Text style={css.submitText_login}>Entrar</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity style={styles.btnRegister}>
-                    <Text>Criar conta gratuita</Text>
-                </TouchableOpacity>
-            </View>
+            </Animated.View>
         </KeyboardAvoidingView>
     );
 }
-
-const styles = StyleSheet.create({
-    background:{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#F5FCFF'
-    },
-    containerLogo: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    container: {
-        flex:1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '90%',
-        paddingBottom: 50
-    },
-    input: {
-        backgroundColor: '#FFF',
-        width: '90%',
-        marginBottom: 15,
-        color: '#222',
-        fontSize: 17,
-        borderRadius: 7,
-        padding: 10,
-    },
-    btnSubmit: {
-        backgroundColor: '#87cefa',
-        width: '90%',
-        height: 45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 7
-    }, 
-    submitText:{
-        fontSize: 18
-    },
-    btnRegister: {
-      marginTop: 10,  
-    },
-});
