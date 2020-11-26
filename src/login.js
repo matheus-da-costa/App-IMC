@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, {useState, useEffect} from 'react';
 
 import { View,
@@ -33,30 +32,6 @@ export default function Login({navigation}) {
             },5000);
         });
     }
-=======
-import React, {useState,useEffect} from 'react';
-
-import { View,
-        KeyboardAvoidingView, 
-        Image, 
-        TextInput, 
-        TouchableOpacity, 
-        Text,
-        Animated,
-        Keyboard
-      } from 'react-native';
-
-import {css} from '../assets/css/css';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-export default function Login({navigation}) {
-
-    const [display, setDisplay]=useState('none');
-    const [user, setUser]=useState(null);
-    const [password, setPassword]=useState(null);
-    const [login, setLogin]=useState(null);
->>>>>>> 0d6b74da960801e8c81785ea3d7d99af450091f5
 
     //Efeito animado do Login
     const [offset] = useState(new Animated.ValueXY({x: 0, y: 95}));
@@ -104,51 +79,19 @@ export default function Login({navigation}) {
                 }),
             ]).start();
         }
-<<<<<<< HEAD
     }, []);    
-=======
-    }, []);
-
-    //Envio de formulário
-    async function sendForm()
-    {
-        let response = await fetch('http://192.168.15.3:3000/login', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: user,
-                password: password
-            })
-        });
-        let json = await response.json();
-        if(json === 'error'){
-            setDisplay('flex');
-            setTimeout(() => {
-                setDisplay('none');
-            },5000);
-            await AsyncStorage.clear();
-        }else { 
-            await AsyncStorage.setItem('userData', JSON.stringify(json));
-            navigation.navigate('App');
-        }
-    }
->>>>>>> 0d6b74da960801e8c81785ea3d7d99af450091f5
 
     return (
         <KeyboardAvoidingView style={css.tela_login}>
             <View style={css.containerLogo}>
                 <Animated.Image 
-<<<<<<< HEAD
                     style={{
-                    width: logo.x,
-                    height: logo.y, 
+                        width: logo.x,
+                        height: logo.y, 
                     }}
                     source={require('../assets/img/logo.png')}/>
             </View>
-    
+
             <Animated.View style={[
                 css.form_login,
                 {
@@ -158,79 +101,33 @@ export default function Login({navigation}) {
                     ]
                 }
             ]}>
-    
-                <Text style={css.msg_login(display)}>Usuário ou senha inválidos!</Text>
-    
-                <TextInput 
-                style={css.input_login}
-                placeholder="Email"
-                onChangeText={email => setEmail(email)}
-                value={email}
-                autoCorrect={false}
-=======
-                style={{
-                   width: logo.x,
-                   height: logo.y, 
-                }}
-                source={require('../assets/img/logo.png')}/>
-            </View>
+            
+            <Text style={css.msg_login(display)}>Usuário ou senha inválidos!</Text>
+            
+            <TextInput 
+            style={css.input_login}
+            placeholder="Email"
+            onChangeText={email => setEmail(email)}
+            value={email}
+            autoCorrect={false}
+            />
 
-          
+            <TextInput
+            style={css.input_login}
+            placeholder="Senha"
+            secureTextEntry={true}
+            onChangeText={senha => setSenha(senha)}
+            value={senha}
+            autoCorrect={false}
+            />
 
-            <Animated.View style={[
-                    css.form_login,
-                    {
-                        opacity: opacity,
-                        transform: [
-                            { translateY: offset.y}
-                        ]
-                    }
-                ]}>
+            <TouchableOpacity 
+                style={css.btnSubmit_login}
+                onPress={() => logar()}>
+                <Text style={css.submitText_login}>Entrar</Text>
+            </TouchableOpacity>
 
-                <Text style={css.msg_login(display)}>Usuário ou senha inválidos!</Text>
-
-                <TextInput 
-                style={css.input_login}
-                placeholder="Username"
-                autoCorrect={false}
-                onChangeText={text=>setUser(text)}
->>>>>>> 0d6b74da960801e8c81785ea3d7d99af450091f5
-                />
-    
-                <TextInput
-                style={css.input_login}
-                placeholder="Senha"
-                secureTextEntry={true}
-<<<<<<< HEAD
-                onChangeText={senha => setSenha(senha)}
-                value={senha}
-                autoCorrect={false}
-=======
-                autoCorrect={false}
-                onChangeText={text=>setPassword(text)}
->>>>>>> 0d6b74da960801e8c81785ea3d7d99af450091f5
-                />
-    
-                <TouchableOpacity 
-                    style={css.btnSubmit_login}
-<<<<<<< HEAD
-                    onPress={() => logar()}>
-                        <Text style={css.submitText_login}>Entrar</Text>
-=======
-                    onPress={() => sendForm()}>
-                    <Text style={css.submitText_login}>Entrar</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={css.btnRegister_login}>
-                    <Text>Criar conta gratuita</Text>
->>>>>>> 0d6b74da960801e8c81785ea3d7d99af450091f5
-                </TouchableOpacity>
             </Animated.View>
         </KeyboardAvoidingView>
     );
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> 0d6b74da960801e8c81785ea3d7d99af450091f5

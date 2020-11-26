@@ -63,13 +63,6 @@ const css = StyleSheet.create({
     submitText_login:{
       fontSize: 18
     },
-<<<<<<< HEAD
-    
-=======
-    btnRegister_login: {
-      marginTop: 10,  
-    },
 
->>>>>>> 0d6b74da960801e8c81785ea3d7d99af450091f5
   });
   export {css};
