@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Login,Tela2,Tela3,Imc} from './src/index';
+import {Login,Tela1,Tela3,Imc} from './src/index';
 
 import {css} from './assets/css/css';
 
@@ -28,8 +28,8 @@ function Tabs() {
                 }}   
             />
             <Tab.Screen 
-                name="Tela2" 
-                component={Tela2}
+                name="Corrida" 
+                component={Tela1}
                 options={{
                     tabBarIcon:()=>(
                         <Icon name="hourglass-start" size={20} color="#1C1C1C" />
