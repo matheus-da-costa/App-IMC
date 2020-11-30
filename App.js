@@ -7,7 +7,7 @@ import {css} from './assets/css/css';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Icon from 'react-native-vector-icons'; 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -20,38 +20,38 @@ function Tabs() {
             <Tab.Screen 
                 name="Home" 
                 component={Home}
-                /*options={{
+                options={{
                     tabBarIcon:()=>(
                         <Icon name="home" size={20} color="#999" />
                     )
-                }}*/  
+                }}  
             />
             <Tab.Screen 
                 name="Tela2" 
                 component={Tela2}
-                /*options={{
+                options={{
                     tabBarIcon:()=>(
-                        <Icon name="hand-holding-medical" size={20} color="#999" />
+                        <Icon name="cloudscale" size={20} color="#999" />
                     )
-                }}*/  
+                }}  
             /> 
             <Tab.Screen 
-                name="Tela3" 
+                name="qtd de água" 
                 component={Tela3}
-                /*options={{
+                options={{
                     tabBarIcon:()=>(
-                        <Icon name="ambulance" size={20} color="#999" />
+                        <Icon name="tint" size={20} color="#999" />
                     )
-                }} */
+                }}
             />
             <Tab.Screen 
                 name="Imc" 
                 component={Imc}
-                /*options={{
+                options={{
                     tabBarIcon:()=>(
-                        <Icon name="weight" size={20} color="#999" />
+                        <Icon name="balance-scale" size={20} color="#999" />
                     )
-                }}*/   
+                }}   
             />
         </Tab.Navigator>
     );
