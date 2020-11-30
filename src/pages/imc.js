@@ -43,9 +43,7 @@ export default class Imc extends Component {
       s.resultadoText = 'Obesidade Grau 1';
     } else if (s.resultado < 40) {
       s.resultadoText = 'Obesidade Grau 2';
-    } else if (s.resultado > 40) {
-      s.resultadoText = 'Obesidade Grau 3';
-    } 
+    }
 
     this.setState(s);
   }

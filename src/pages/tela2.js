@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Tela2() {
@@ -17,9 +17,24 @@ export default function Tela2() {
     },[])
 
     return (
-        <View>
-            <Text>Segunda Tela</Text>
-            <Text>Dados do {user} </Text>
+        <View style = {styles.container}>
+            <Text>Peso Ideal</Text>
+            <Image style={styles.imagem} source={require('./assets/img/table.png')} />
         </View>
+        
+        
     );
-} 
+}
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    backgroundColor:'#fff',
+    alignItems:'center',
+    
+
+  },
+  imagem: {
+    width: 300,
+    height: 300,
+  }
+}) 
