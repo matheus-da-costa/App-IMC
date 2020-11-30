@@ -1,13 +1,14 @@
 import React from 'react';
 
-import {Login,Home,Tela2,Tela3,Imc} from './src/index';
+import {Login,Tela2,Tela3,Imc} from './src/index';
 
 import {css} from './assets/css/css';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, HeaderBackground } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -18,20 +19,20 @@ function Tabs() {
             barStyle={css.area__tab}
         >
             <Tab.Screen 
-                name="Home" 
-                component={Home}
+                name="Imc" 
+                component={Imc}
                 options={{
                     tabBarIcon:()=>(
-                        <Icon name="home" size={20} color="#999" />
+                        <Icon name="heartbeat" size={20} color="#1C1C1C" />
                     )
-                }}  
+                }}   
             />
             <Tab.Screen 
                 name="Tela2" 
                 component={Tela2}
                 options={{
                     tabBarIcon:()=>(
-                        <Icon name="industry" size={20} color="#999" />
+                        <Icon name="hourglass-start" size={20} color="#1C1C1C" />
                     )
                 }}  
             /> 
@@ -40,19 +41,11 @@ function Tabs() {
                 component={Tela3}
                 options={{
                     tabBarIcon:()=>(
-                        <Icon name="tint" size={20} color="#999" />
+                        <Icon name="tint" size={20} color="#1C1C1C" />
                     )
                 }}
             />
-            <Tab.Screen 
-                name="Imc" 
-                component={Imc}
-                options={{
-                    tabBarIcon:()=>(
-                        <Icon name="heartbeat" size={20} color="#999" />
-                    )
-                }}   
-            />
+            
         </Tab.Navigator>
     );
 }
@@ -61,7 +54,10 @@ const App = () => (
     <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={Login}  options={{headerShown: false}}/>
-            <Stack.Screen name="App" component={Tabs} options={{headerTitleStyle:{alignSelf:'center'}}}/>
+            <Stack.Screen name="App" component={Tabs} options={({}) => {
+            return {headerTitleStyle:{alignSelf:'center'},
+            headerLeft:null,
+            headerStyle: css.headerStyle}}}/>
         </Stack.Navigator>
 
     </NavigationContainer>

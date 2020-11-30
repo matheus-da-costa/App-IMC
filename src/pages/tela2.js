@@ -16,7 +16,7 @@ export default function Tela2() {
         getUser();
     },[])
 
-    return (
+    return(
         <View>
             <Text>Segunda Tela</Text>
             <Text>Dados do {user} </Text>

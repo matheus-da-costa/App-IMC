@@ -11,8 +11,7 @@ export default function Counter({ value }) {
 
 const Background = styled.View`
     width: 200px;
-    height: 200px
-    background-color: #00009C;
+    height: 200px;
     border-radius: 100px;
     align-items: center;
     justify-content: center;
@@ -23,5 +22,5 @@ const Background = styled.View`
 
 const CounterNumber = styled.Text`
     font-size: 120px;
-    color: #C0D9D9;
+    color: black;
 `;

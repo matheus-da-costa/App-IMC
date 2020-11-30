@@ -13,7 +13,7 @@ export default function Button({children, onPress}) {
 }
 
 const ButtonContainer = styled.View`
-    background-color: #00009C; 
+    background-color: #57e1ee; 
     padding: 14px 24px;
     border-radius: 16px;
     border-radius: 15px;
@@ -24,6 +24,6 @@ const ButtonContainer = styled.View`
 `;
 
 const ButtonText = styled.Text`
-    color: #C0D9D9;
+    color: black;
     font-size: 20px;
 `;

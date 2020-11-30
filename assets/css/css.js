@@ -12,7 +12,7 @@ const css = StyleSheet.create({
         padding: 20
     },
     area__tab:{
-        backgroundColor: '#fff',
+        backgroundColor: '#F5FCFF',
         fontSize: 20,
         fontWeight: 'bold',
         color:'#333'
@@ -62,6 +62,9 @@ const css = StyleSheet.create({
     }, 
     submitText_login:{
       fontSize: 18
+    },
+    headerStyle:{
+      backgroundColor: '#F5FCFF'
     },
 
   });

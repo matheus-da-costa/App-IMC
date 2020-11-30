@@ -9,12 +9,7 @@ export default function CounterScreen() {
     const [counter, setCounter] = useState(0);
 
     return (
-        <ScrollView>
             <Container>
-                <Header>
-                <PageTitle>Contador de copos d'água</PageTitle>
-                </Header>
-
                 <CounterWrapper>
                     <Counter value={counter}/>
                     <ResetButton onPress={() => setCounter(0)}>Zerar</ResetButton>
@@ -24,7 +19,6 @@ export default function CounterScreen() {
                     <Button onPress={() => setCounter(counter + 1)}>Adicionar</Button>
                 </Footer>
         </Container>
-        </ScrollView>
     )
 } 
 
@@ -33,8 +27,8 @@ const Container = styled.View`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 80%;
-
+    height: 100%;
+    backgroundColor: #F5FCFF;
 `;
 
 const Header = styled.View`
