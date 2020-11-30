@@ -31,7 +31,7 @@ function Tabs() {
                 component={Tela2}
                 options={{
                     tabBarIcon:()=>(
-                        <Icon name="cloudscale" size={20} color="#999" />
+                        <Icon name="industry" size={20} color="#999" />
                     )
                 }}  
             /> 
@@ -49,7 +49,7 @@ function Tabs() {
                 component={Imc}
                 options={{
                     tabBarIcon:()=>(
-                        <Icon name="balance-scale" size={20} color="#999" />
+                        <Icon name="heartbeat" size={20} color="#999" />
                     )
                 }}   
             />
